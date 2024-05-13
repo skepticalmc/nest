@@ -1,6 +1,7 @@
 import serverAuth from "@/lib/serverAuth";
 import { ErrorType } from "@/utils/types";
 import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@/lib/prismadb";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== "POST") return res.status(405).end();
