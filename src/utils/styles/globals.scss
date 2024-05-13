@@ -1,0 +1,41 @@
+@tailwind base;
+
+@layer base {
+    h1 {
+        @apply text-2xl;
+    }
+    h2 {
+        @apply text-xl;
+    }
+    h3 {
+        @apply text-lg;
+    }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+    height: 100%;
+}
+
+#__next {
+    height: 100%;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.page {
+    padding: 25px;
+}

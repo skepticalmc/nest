@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @unique
+  bio String @default("A mysterious user.")
+
+  bots Bot[]
+}
+
+model Bot {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  userId String @unique
+  botId String @unique
+
+  prefix String
+  summary String
+  description String
+  votes Vote[]
+
+  creatorId String
+  creator User @relation(fields: [creatorId], references: [userId], onDelete: Cascade)
+}
+
+type Vote {
+  userId String
+  createdAt DateTime @default(now())
+}
