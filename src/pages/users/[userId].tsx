@@ -6,7 +6,7 @@ import { Avatar, Button, Divider, Input, Modal, ModalBody, ModalContent, ModalFo
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { FaPencil, FaUserPen } from "react-icons/fa6";
 import { toast } from "sonner";
 
@@ -31,12 +31,14 @@ const UserPage = () => {
         user?.bio
     ]);
 
-    const handleSubmit = useCallback(async () => {
+    const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
         try {
             setLoading(true);
+            e.stopPropagation();
+            e.preventDefault();
 
             await axios.post(`/api/users/edit`, {
-                bio
+                bio,
             });
 
             toast.success(`Saved!`);
@@ -64,7 +66,7 @@ const UserPage = () => {
                     />
                     <div>
                         <h1>{externalUser?.name}</h1>
-                        <span className="text-foreground-500">user bio</span>
+                        <span className="text-foreground-500">{bio}</span>
                     </div>
                 </div>
                 {profile?.id === userId ? (
@@ -93,6 +95,7 @@ const UserPage = () => {
                                         <ModalFooter>
                                             <Button
                                                 color="success"
+                                                type="submit"
                                             >Save</Button>
                                         </ModalFooter>
                                     </form>
