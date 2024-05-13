@@ -86,10 +86,11 @@ const BotPage = () => {
                             <SyntaxHighlighter
                                 {...rest}
                                 PreTag="div"
-                                children={String(children).replace(/\n$/, '')}
                                 language={match[1]}
                                 style={dark}
-                            />
+                            >
+                                {String(children).replace(/\n$/, '')}
+                            </SyntaxHighlighter>
                         ) : (
                             <code {...rest} className={`${className} bg-default-100 rounded p-1`}>
                                 {children}

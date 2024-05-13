@@ -58,6 +58,7 @@ const EditBotPage = () => {
         prefix,
         summary,
         description,
+        router,
     ]);
     if (bot?.creatorId !== profile?.id) return null;
     if (botLoading || isLoading || status === "loading") return (<Spinner />);

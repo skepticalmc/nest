@@ -20,18 +20,7 @@ const BotVotePage = () => {
         try {
             setLoading(true);
 
-            let errored: boolean = false;
-            const { data: response } = await axios.post(`/api/bots/${botId}/vote`)
-            axios.post(``).then(({ data: response }) => {
-                if (response.voted === false) {
-                    if (response.error && response.error === ErrorType.VOTE_TOO_EARLY) {
-                        errored = true;
-                        return toast.error(`You cannot vote yet!`);
-                    };
-                    errored = true;
-                    return toast.error(`Something went wrong.`);
-                };
-            });
+            const { data: response } = await axios.post(`/api/bots/${botId}/vote`)            
             if (response.voted === false) {
                 let error = "Something went wrong";
                 if (response.error && response.error === ErrorType.VOTE_TOO_EARLY) error = "You cannot vote yet, you need to wait at least 12 hours past your last vote.";
@@ -45,7 +34,7 @@ const BotVotePage = () => {
         } finally {
             setLoading(false);
         };
-    }, [botId]);
+    }, [botId, router]);
     useEffect(() => {
         if (disabled) {
             const timer = setInterval(() => {

@@ -28,6 +28,9 @@ model Bot {
   userId String @unique
   botId String @unique
 
+  approved Boolean @default(false)
+  approvedAt DateTime?
+
   prefix String
   summary String
   description String

@@ -6,7 +6,7 @@ import { FormEvent, useCallback, useState } from "react";
 import { FaInfo, FaList, FaMessage, FaRobot } from "react-icons/fa6";
 import { toast } from "sonner";
 
-const internalBotIdDocumentation = "https://www.guilded.gg/Nest/groups/3NBVjMj3/channels/95e73a70-81bc-4a39-a51b-897782a38be4/docs/427315";
+const internalBotIdDoc = "https://www.guilded.gg/Nest/groups/3NBVjMj3/channels/95e73a70-81bc-4a39-a51b-897782a38be4/docs/427315";
 
 const AddBot = () => {
     const [botId, setBotId] = useState("");
@@ -49,6 +49,7 @@ const AddBot = () => {
         prefix,
         summary,
         description,
+        router,
     ]);
     return (
         <div className="page">
@@ -65,8 +66,8 @@ const AddBot = () => {
                                 isExternal
                                 showAnchorIcon
                                 className="text-xs" 
-                                href={internalBotIdDocumentation}
-                            >What is a "Internal" Bot ID?</Link>
+                                href={internalBotIdDoc}
+                            >What is a Internal Bot ID?</Link>
                         </p>
                     }
                     variant="bordered"

@@ -46,7 +46,6 @@ const UserPage = () => {
             setLoading(false);
         };
     }, [
-        userId,
         bio,
     ]);
 
